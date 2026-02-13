@@ -1,3 +1,10 @@
+---
+title: "Day 1: AIを体感する日"
+order: 2
+category: "day"
+description: "AIに日本語で指示するだけで、アプリの画面が作れる"
+---
+
 # Day 1: AIを体感する日
 
 ## ゴール

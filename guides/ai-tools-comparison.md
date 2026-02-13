@@ -1,3 +1,8 @@
+---
+title: "AI使い分けガイド"
+category: "reference"
+---
+
 # AI使い分けガイド
 
 ## ツール比較表

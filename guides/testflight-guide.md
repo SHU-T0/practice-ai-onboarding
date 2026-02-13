@@ -1,3 +1,8 @@
+---
+title: "TestFlightガイド"
+category: "reference"
+---
+
 # TestFlight公開手順書
 
 ## 前提条件

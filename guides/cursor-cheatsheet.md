@@ -1,3 +1,8 @@
+---
+title: "Cursor操作早見表"
+category: "reference"
+---
+
 # Cursor操作早見表
 
 ## 基本操作

@@ -1,3 +1,10 @@
+---
+title: "Day 5: TestFlight配信"
+order: 6
+category: "day"
+description: "アプリをTestFlightで実機テスト・配信する"
+---
+
 # Day 5: Git + セキュリティ + TestFlight
 
 ## ゴール

@@ -1,3 +1,10 @@
+---
+title: "Day 3: データベース連携"
+order: 4
+category: "day"
+description: "Supabaseを使ってデータの保存と取得を学ぶ"
+---
+
 # Day 3: バックエンド入門
 
 ## ゴール

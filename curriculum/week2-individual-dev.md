@@ -1,3 +1,10 @@
+---
+title: "Week 2: 個人開発期間"
+order: 9
+category: "week"
+description: "メンターサポートを受けながら個人アプリを開発"
+---
+
 # Week 2 後半（水-金）: 個人プロジェクト開発
 
 ## 期間

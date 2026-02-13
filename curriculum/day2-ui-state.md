@@ -1,3 +1,10 @@
+---
+title: "Day 2: UIと状態管理"
+order: 3
+category: "day"
+description: "state（状態）の概念を理解し、インタラクティブなアプリが作れる"
+---
+
 # Day 2: UIと状態管理
 
 ## ゴール

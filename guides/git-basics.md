@@ -1,3 +1,8 @@
+---
+title: "Git基礎ガイド"
+category: "reference"
+---
+
 # Git最小限ガイド（GitHub Desktop版）
 
 ## Gitとは？

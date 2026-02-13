@@ -1,3 +1,10 @@
+---
+title: "Week 3: 仕上げとリリース"
+order: 10
+category: "week"
+description: "アプリを磨き上げてリリースする"
+---
+
 # Week 3: 仕上げ・テスト・発表
 
 ## 期間

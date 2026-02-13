@@ -1,3 +1,10 @@
+---
+title: "Day 6: 要件定義"
+order: 7
+category: "day"
+description: "自分のアプリの要件を整理し、設計に落とし込む"
+---
+
 # Day 6: 要件定義ワークショップ
 
 ## ゴール

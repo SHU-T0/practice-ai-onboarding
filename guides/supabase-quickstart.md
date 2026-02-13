@@ -1,3 +1,8 @@
+---
+title: "Supabaseクイックスタート"
+category: "reference"
+---
+
 # Supabase入門ガイド
 
 ## Supabaseとは？

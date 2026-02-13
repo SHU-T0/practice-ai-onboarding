@@ -1,3 +1,8 @@
+---
+title: "Cursor AI設定ガイド"
+category: "reference"
+---
+
 # CursorのAI設定ガイド — モデル・Rules・Agent・MCP
 
 ## この文書の目的

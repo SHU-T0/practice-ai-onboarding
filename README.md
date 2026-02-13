@@ -2,6 +2,12 @@
 
 **講師の方へ**: まず [INSTRUCTOR-GUIDE.md](./INSTRUCTOR-GUIDE.md) をお読みください。研修の進め方・準備手順がまとまっています。
 
+**受講者の方へ**: インタラクティブなチュートリアルアプリで学習を進められます。
+```bash
+cd web && npm install && npm run dev
+```
+詳しくは [web/README.md](./web/README.md) を参照してください。
+
 ## 研修概要
 
 営業・ビジネス系メンバー5名（IT/AI基礎知識なし）を対象に、AIを武器にiOSアプリ・Web・業務自動化を一人で完結できるジェネラリストに育成する短期集中研修。

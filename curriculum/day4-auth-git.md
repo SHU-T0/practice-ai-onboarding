@@ -1,3 +1,10 @@
+---
+title: "Day 4: 認証とGit"
+order: 5
+category: "day"
+description: "ユーザー認証の実装とGitによるバージョン管理"
+---
+
 # Day 4: 認証（Auth）
 
 ## ゴール

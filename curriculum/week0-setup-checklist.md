@@ -1,3 +1,10 @@
+---
+title: "Week 0: 環境構築チェックリスト"
+order: 1
+category: "week"
+description: "開発環境のセットアップと必要なツールのインストール"
+---
+
 # Week 0: 環境構築チェックリスト
 
 ## 概要
