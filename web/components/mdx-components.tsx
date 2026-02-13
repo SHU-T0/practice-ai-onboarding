@@ -72,20 +72,26 @@ export const mdxComponents: MDXRemoteProps["components"] = {
     return <MdxCheckboxLi {...props} />;
   },
 
-  pre: ({ children, ...props }: React.ComponentPropsWithoutRef<"pre">) => {
+  pre: ({ children, style, ...props }: React.ComponentPropsWithoutRef<"pre"> & { style?: React.CSSProperties }) => {
     const codeElement = children as React.ReactElement<{
       className?: string;
-      children?: string;
+      children?: React.ReactNode;
     }>;
     if (
       codeElement &&
       typeof codeElement === "object" &&
       "props" in codeElement
     ) {
+      const lang = codeElement.props.className
+        ?.replace(/language-/, "")
+        .replace(/shiki/, "")
+        .trim();
       return (
-        <div className="mb-4">
-          <CodeBlock className={codeElement.props.className}>
-            {String(codeElement.props.children || "")}
+        <div className="mb-4" style={style}>
+          <CodeBlock language={lang || undefined}>
+            <code className={codeElement.props.className}>
+              {codeElement.props.children}
+            </code>
           </CodeBlock>
         </div>
       );
@@ -98,15 +104,18 @@ export const mdxComponents: MDXRemoteProps["components"] = {
     className,
     ...props
   }: React.ComponentPropsWithoutRef<"code">) => {
-    if (!className) {
-      return (
-        <code
-          className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono"
-          {...props}
-        >
-          {children}
-        </code>
-      );
+    // Inline code only — block code is handled by pre
+    if (!className || className.includes("shiki")) {
+      if (!className) {
+        return (
+          <code
+            className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono"
+            {...props}
+          >
+            {children}
+          </code>
+        );
+      }
     }
     return (
       <code className={className} {...props}>
