@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { toHeadingId } from "./heading-utils";
+import { createHeadingIdFactory } from "./heading-utils";
 
 const curriculumDir = path.join(process.cwd(), "..", "curriculum");
 const guidesDir = path.join(process.cwd(), "..", "guides");
@@ -32,13 +32,14 @@ export function extractHeadings(
   content: string
 ): { level: number; text: string; id: string }[] {
   const headings: { level: number; text: string; id: string }[] = [];
+  const nextHeadingId = createHeadingIdFactory();
   const lines = content.split("\n");
   for (const line of lines) {
     const match = line.match(/^(#{2,3})\s+(.+)$/);
     if (match) {
       const level = match[1].length;
       const text = match[2];
-      const id = toHeadingId(text);
+      const id = nextHeadingId(text);
       headings.push({ level, text, id });
     }
   }

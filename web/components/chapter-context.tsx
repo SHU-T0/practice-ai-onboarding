@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useRef } from "react";
+import { createContext, useContext } from "react";
 
 const ChapterContext = createContext<string>("");
 const ChecklistCounterContext = createContext<{ next: () => number }>({
@@ -14,15 +14,11 @@ export function ChapterProvider({
   chapterId: string;
   children: React.ReactNode;
 }) {
-  const counterRef = useRef(0);
-  // Reset counter on each render (new page)
-  counterRef.current = 0;
+  let counter = 0;
 
   return (
     <ChapterContext.Provider value={chapterId}>
-      <ChecklistCounterContext.Provider
-        value={{ next: () => counterRef.current++ }}
-      >
+      <ChecklistCounterContext.Provider value={{ next: () => counter++ }}>
         {children}
       </ChecklistCounterContext.Provider>
     </ChapterContext.Provider>

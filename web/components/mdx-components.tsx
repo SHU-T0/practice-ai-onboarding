@@ -2,12 +2,15 @@ import type { MDXRemoteProps } from "next-mdx-remote/rsc";
 import { CodeBlock } from "./code-block";
 import { MdxCheckboxLi } from "./mdx-checkbox-li";
 import { AlertTriangle, Lightbulb, Info } from "lucide-react";
-import { toHeadingId } from "@/lib/heading-utils";
+import { createHeadingIdFactory } from "@/lib/heading-utils";
 
-// Static MDX component mapping - no closure needed
-// Checklist items use content-based identification via MdxCheckboxLi
+// Create per-render MDX component mapping so heading IDs are deterministic
+// and unique even when headings have the same text.
 
-export const mdxComponents: MDXRemoteProps["components"] = {
+export function createMdxComponents(): MDXRemoteProps["components"] {
+  const nextHeadingId = createHeadingIdFactory();
+
+  return {
   h1: ({ children, ...props }) => (
     <h1
       className="mt-8 mb-4 text-3xl font-bold tracking-tight"
@@ -18,7 +21,7 @@ export const mdxComponents: MDXRemoteProps["components"] = {
   ),
 
   h2: ({ children, ...props }) => {
-    const id = toHeadingId(String(children));
+    const id = nextHeadingId(extractText(children));
     return (
       <h2
         id={id}
@@ -31,7 +34,7 @@ export const mdxComponents: MDXRemoteProps["components"] = {
   },
 
   h3: ({ children, ...props }) => {
-    const id = toHeadingId(String(children));
+    const id = nextHeadingId(extractText(children));
     return (
       <h3
         id={id}
@@ -203,7 +206,8 @@ export const mdxComponents: MDXRemoteProps["components"] = {
       {children}
     </strong>
   ),
-};
+  };
+}
 
 function extractText(node: React.ReactNode): string {
   if (typeof node === "string") return node;

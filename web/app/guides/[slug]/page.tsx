@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllGuides, getGuideBySlug, extractHeadings } from "@/lib/content";
-import { mdxComponents } from "@/components/mdx-components";
+import { createMdxComponents } from "@/components/mdx-components";
 import { mdxOptions } from "@/lib/mdx-options";
 import { GuideClient } from "./guide-client";
 
@@ -32,7 +32,11 @@ export default async function GuidePage({ params }: PageProps) {
   return (
     <GuideClient slug={slug} title={guide.title} headings={headings}>
       <article>
-        <MDXRemote source={guide.content} components={mdxComponents} options={{ mdxOptions }} />
+        <MDXRemote
+          source={guide.content}
+          components={createMdxComponents()}
+          options={{ mdxOptions }}
+        />
       </article>
     </GuideClient>
   );

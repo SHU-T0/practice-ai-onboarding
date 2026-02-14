@@ -5,7 +5,7 @@ import {
   getChapterBySlug,
   extractHeadings,
 } from "@/lib/content";
-import { mdxComponents } from "@/components/mdx-components";
+import { createMdxComponents } from "@/components/mdx-components";
 import { mdxOptions } from "@/lib/mdx-options";
 import { StepNavigator } from "@/components/step-navigator";
 import { ChapterClient } from "./chapter-client";
@@ -49,7 +49,11 @@ export default async function ChapterPage({ params }: PageProps) {
       headings={headings}
     >
       <article>
-        <MDXRemote source={chapter.content} components={mdxComponents} options={{ mdxOptions }} />
+        <MDXRemote
+          source={chapter.content}
+          components={createMdxComponents()}
+          options={{ mdxOptions }}
+        />
       </article>
 
       <StepNavigator
