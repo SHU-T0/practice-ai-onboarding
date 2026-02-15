@@ -11,6 +11,8 @@ description: "Supabaseを使ってデータの保存と取得を学ぶ"
 
 Supabase（DB）に接続し、データを保存・読み出しできるアプリを作る
 
+> ⏰ **時間について**: このDayの内容は盛りだくさんです。時間内に全部終わらなくても大丈夫です。大事なのは「理解しながら進むこと」。残った部分は翌日のキャッチアップタイムで取り組めます。
+
 > **テンプレートについて**: Day 2-3では学習のシンプルさを優先して `npx create-expo-app --template blank-typescript`（App.tsxベース）を使用します。Day 4以降でExpo Router構成（`app/index.tsx`ベース）に移行します。スタータープロジェクト（`templates/expo-starter/`）はDay 4以降で使用してください。
 
 ## 新概念（2つに絞る）
@@ -217,6 +219,46 @@ AIがこの形で書いてくれるので、覚える必要はありません。
    - **anon public key**: `eyJxxx...` (長い文字列)
 
 この2つは後で使います。
+
+#### 環境変数の設定
+
+Supabaseプロジェクトの情報をアプリに接続するため、環境変数を設定します。
+
+**ステップ1: Supabaseダッシュボードから情報を取得**
+
+1. Supabaseダッシュボード（https://supabase.com/dashboard）を開く
+2. 作成したプロジェクトをクリック
+3. 左メニューの **⚙️ Project Settings**（歯車アイコン）をクリック
+4. **API** をクリック
+5. 以下の2つの値をコピー:
+   - **Project URL**: `https://xxxxx.supabase.co` の形式
+   - **Project API keys** の **anon / public**: `eyJ...` で始まる長い文字列
+
+> ⚠️ **重要**: 「anon / public」キーを使ってください。「service_role / secret」キーは管理者用なので、アプリには絶対に使わないでください。
+
+**ステップ2: 環境変数ファイルの作成**
+
+ターミナルで以下を実行:
+
+```bash
+# プロジェクトのルートディレクトリで実行
+cp .env.local.example .env.local
+```
+
+**ステップ3: 値の入力**
+
+Cursorで `.env.local` ファイルを開き、コピーした値を貼り付け:
+
+```
+EXPO_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
+EXPO_PUBLIC_SUPABASE_ANON_KEY=eyJxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+> `https://xxxxx.supabase.co` と `eyJxxx...` の部分を、ステップ1でコピーした自分のプロジェクトの値に書き換えてください。
+
+**ステップ4: 確認**
+
+`.env.local` ファイルが `.gitignore` に含まれていることを確認（秘密情報がGitHubにアップされるのを防ぐ）。
 
 #### トラブルシューティング
 

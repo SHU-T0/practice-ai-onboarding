@@ -13,6 +13,8 @@ description: "アプリをTestFlightで実機テスト・配信する"
 - RLSで自分のデータだけ見えるように設定する
 - 共通アプリをTestFlightで配布する
 
+> ⏰ **時間について**: このDayの内容は盛りだくさんです。時間内に全部終わらなくても大丈夫です。大事なのは「理解しながら進むこと」。残った部分は翌日のキャッチアップタイムで取り組めます。
+
 ## 新概念
 - Git（バージョン管理）
 - セキュリティ（APIキー、.env.local、.gitignore）
@@ -330,10 +332,19 @@ eas build:configure
 | 項目 | どこで確認するか |
 |------|----------------|
 | `appleId` | Apple Developer Programに登録したメールアドレス |
-| `appleTeamId` | Slackで全員に同じ値が案内されます |
+| `appleTeamId` | 下記の「Apple Team IDの取得方法」を参照 |
 | `ascAppId` | この後のApp Store Connect設定（ステップ3）でアプリを作成した後に確認します |
 
 > `ascAppId` は今すぐ埋められません。ステップ3の後に戻って記入します。
+
+**Apple Team IDの取得方法**:
+
+1. ブラウザで https://developer.apple.com/account を開く
+2. Apple IDでサインイン
+3. **Membership details**（メンバーシップ詳細）をクリック
+4. **Team ID** の値をコピー（例: `ABC123DEF4`）
+
+> 会社のApple Developer Programアカウントを使っている場合は、Slackで共有されたTeam IDを使ってください。
 
 ### app.json の設定
 

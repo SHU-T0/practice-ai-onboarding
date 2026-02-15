@@ -247,37 +247,51 @@ Day 4で作った `memo-app` をベースに、個人プロジェクトを新し
 > **2つの選択肢**:
 > - **推奨**: Day 4の `memo-app` をコピー（認証・DB接続が設定済みで楽）
 > - **代替**: `templates/expo-starter/` をコピー（よりクリーンな状態から始めたい場合）
->
-> `templates/expo-starter/` は、研修資料リポジトリ内にあります。Slackで案内されるフォルダの場所を確認してください。
 
-#### 1. Day 4のプロジェクトをコピー
+#### ステップ1: テンプレートをコピーしてプロジェクトを作成
 
-**方法A: Finderでコピー（簡単）**
-
-1. Finderで「書類（Documents）」フォルダを開く
-2. `memo-app` フォルダを選択
-3. `Cmd + C`（コピー）→ `Cmd + V`（ペースト）
-4. コピーされた `memo-app のコピー` フォルダの名前を、自分のアプリ名（英語）に変更
-
-**方法B: ターミナルでコピー**
+ターミナルで以下のコマンドを**1行ずつ**実行してください:
 
 ```bash
+# 作業フォルダに移動
 cd ~/Documents
-cp -r memo-app my-app-name
-cd my-app-name
-```
 
-> `my-app-name` の部分を自分のアプリ名（英語、スペースなし）に置き換えてください。例: `sales-log`, `knowledge-share`
+# テンプレートをコピーして自分のプロジェクト名に変更
+# 「my-app」の部分を自分のアプリ名（英語・小文字・ハイフン区切り）に変えてください
 
-> **パスについて**: Day 1から一貫して `~/Documents`（書類）フォルダで作業しています。全員同じ場所にプロジェクトを置くことで、トラブルシューティングがしやすくなります。
+# 推奨: Day 4の memo-app をコピー（認証・DB接続が設定済み）
+cp -r memo-app my-app
 
-#### 2. 依存関係のインストール
+# 代替: テンプレートからコピー（クリーンな状態から始めたい場合）
+# cp -r ~/Documents/practice-ai-onboarding/templates/expo-starter my-app
 
-```bash
+# プロジェクトフォルダに移動
+cd my-app
+
+# 必要なパッケージをインストール（1-2分かかります）
 npm install
 ```
 
-#### 3. .env.local の更新
+> ⚠️ `my-app` は自分のアプリ名に書き換えてください。例: `sales-tracker`, `task-manager`, `inventory-app`
+
+> **パスについて**: Day 1から一貫して `~/Documents`（書類）フォルダで作業しています。全員同じ場所にプロジェクトを置くことで、トラブルシューティングがしやすくなります。
+
+#### ステップ2: Cursorで開く
+
+1. Cursorを開く
+2. `File > Open Folder`
+3. `書類（Documents）` → 自分のアプリ名のフォルダを選択 → 「Open」
+
+#### ステップ3: 動作確認
+
+```bash
+npx expo start
+# 「i」を押してiOS Simulatorで起動
+```
+
+テンプレートのデフォルト画面が表示されればOKです。
+
+#### ステップ4: .env.local の更新
 
 新しいSupabaseプロジェクトのURLとAPIキーに変更:
 
@@ -286,7 +300,7 @@ EXPO_PUBLIC_SUPABASE_URL=https://your-new-project.supabase.co
 EXPO_PUBLIC_SUPABASE_ANON_KEY=your-new-anon-key
 ```
 
-#### 4. app.json の更新
+#### ステップ5: app.json の更新
 
 ```json
 {
@@ -301,14 +315,14 @@ EXPO_PUBLIC_SUPABASE_ANON_KEY=your-new-anon-key
 }
 ```
 
-#### 5. GitHubリポジトリ作成
+#### ステップ6: GitHubリポジトリ作成
 
 1. GitHubで **New repository**
 2. Repository name: `my-app-name`
 3. Private にチェック
 4. **Create repository**
 
-#### 6. CursorのGit機能で接続
+#### ステップ7: CursorのGit機能で接続
 
 1. CursorでプロジェクトフォルダをOpen
 2. Source Controlパネル(`Cmd + Shift + G`)を開く
