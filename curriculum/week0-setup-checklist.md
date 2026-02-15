@@ -168,7 +168,7 @@ npm --version
 
 ```bash
 # 研修リポジトリをクローン
-git clone https://github.com/[研修リポジトリURL]/practice-ai-onboarding.git
+git clone https://github.com/SHU-T0/practice-ai-onboarding.git
 cd practice-ai-onboarding/web
 npm install
 npm run dev
@@ -271,79 +271,6 @@ eas whoami
 - [ ] 全受講者を招待
 - [ ] Slackで自己紹介を投稿する
 
-## 共通設定ファイル配布・動作確認手順
-
-### 1. スターターテンプレートの配布
-
-以下のコマンドをターミナルで実行してください:
-
-```bash
-cd ~/Documents
-git clone https://github.com/[研修リポジトリURL]/expo-supabase-starter.git
-cd expo-supabase-starter
-npm install
-```
-
-- [ ] 上記コマンドを順番に実行
-- [ ] エラーが出た場合はその場で対処
-
-### 2. 環境変数の設定
-
-```bash
-# .env.example を .env にコピー
-cp .env.example .env
-
-# Supabase情報を入力（Slackで共有された値）
-# SUPABASE_URL=https://xxx.supabase.co
-# SUPABASE_ANON_KEY=eyJxxx...
-```
-
-### 3. 動作確認（iOS Simulator）
-
-```bash
-npx expo start
-# 表示されるメニューで「i」を押してiOS Simulatorで起動
-```
-
-#### チェックポイント
-
-- [ ] iOS Simulatorが起動する
-- [ ] アプリが表示される（エラーがない）
-- [ ] ホーム画面が正しく表示される
-
-### 4. 動作確認（実機）
-
-```bash
-npx expo start
-# QRコードをExpo Goアプリでスキャン
-```
-
-#### チェックポイント
-
-- [ ] Expo Goアプリがインストール済み
-- [ ] QRコードをスキャンしてアプリが開く
-- [ ] 実機で正しく表示される
-
-### 5. Supabase接続テスト
-
-以下のテストコードを実行:
-
-```typescript
-// app/(tabs)/index.tsx
-import { supabase } from '@/lib/supabase';
-
-// テストデータを取得
-const { data, error } = await supabase
-  .from('todos')
-  .select('*');
-
-console.log('Supabase接続テスト:', data, error);
-```
-
-#### チェックポイント
-
-- [ ] コンソールにデータが表示される
-- [ ] エラーが出ない
 
 ## 最終確認チェックリスト
 
@@ -436,12 +363,10 @@ xcode-select --install
 
 **原因**: 環境変数が正しく設定されていない
 
-```bash
-# 解決策
-# 1. .env ファイルの確認
-cat .env
-
-# 2. URLとKEYが正しいか確認
-# 3. Supabaseダッシュボードで値を再確認
-```
+解決手順:
+1. `.env.local` ファイルが存在するか確認（`cp .env.local.example .env.local` を忘れていないか）
+2. `EXPO_PUBLIC_SUPABASE_URL` と `EXPO_PUBLIC_SUPABASE_ANON_KEY` が正しいか確認
+3. Supabaseダッシュボード（**Settings → API**）で値を再確認
+4. `service_role` キーを間違えて使っていないか確認（`anon` キーが正解）
+5. `.env.local` を変更したら `npx expo start` を再起動
 
