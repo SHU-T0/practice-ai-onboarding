@@ -34,7 +34,7 @@ practice-ai-onboarding/
 │   ├── day1-ai-basics.md          → Day 1当日に使用
 │   ├── day2-ui-state.md           → Day 2当日に使用
 │   ├── day3-supabase-db.md        → Day 3当日に使用
-│   ├── day4-auth-git.md           → Day 4当日に使用
+│   ├── day4-auth.md               → Day 4当日に使用
 │   ├── day5-testflight.md         → Day 5当日に使用
 │   ├── day6-requirements.md       → Day 6当日に使用
 │   ├── day7-project-start.md      → Day 7当日に使用
@@ -589,7 +589,7 @@ const { data } = await supabase.from('todos').delete().eq('id', '1');
 
 ### Day 4: 認証（Auth）
 
-**参照**: `curriculum/day4-auth-git.md`
+**参照**: `curriculum/day4-auth.md`
 
 **前日準備**:
 - [ ] 講師のSupabaseプロジェクトで Auth → Providers → Email → Confirm email を無効化済みか確認

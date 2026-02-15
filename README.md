@@ -124,7 +124,7 @@ practice-ai-onboarding/
 │   ├── day1-ai-basics.md                  # Day 1: AI基礎 + ツール体験
 │   ├── day2-ui-state.md                   # Day 2: UI・状態管理
 │   ├── day3-supabase-db.md                # Day 3: Supabase DB読み書き
-│   ├── day4-auth-git.md                   # Day 4: 認証 + Expo Router移行
+│   ├── day4-auth.md                       # Day 4: 認証 + Expo Router移行
 │   ├── day5-testflight.md                 # Day 5: Git + セキュリティ + TestFlight
 │   ├── day6-requirements.md               # Day 6: 要件定義ワークショップ
 │   ├── day7-project-start.md              # Day 7: 個人プロジェクト開始

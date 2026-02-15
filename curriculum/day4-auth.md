@@ -1,8 +1,8 @@
 ---
-title: "Day 4: 認証とGit"
+title: "Day 4: 認証（Auth）"
 order: 5
 category: "day"
-description: "ユーザー認証の実装とGitによるバージョン管理"
+description: "ユーザー認証の実装とメモアプリのCRUD完成"
 ---
 
 # Day 4: 認証（Auth）

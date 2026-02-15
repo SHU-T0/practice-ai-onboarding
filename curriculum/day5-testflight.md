@@ -524,7 +524,7 @@ eas build:list
 
 ### ミニティーチャー（5分）
 
-**テーマ**: Day 4で学んだ「Supabase Auth」または「Git」を自分の言葉で説明
+**テーマ**: Day 4で学んだ「Supabase Auth」または「Expo Router」を自分の言葉で説明
 
 ---
 
