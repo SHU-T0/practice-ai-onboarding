@@ -15,6 +15,8 @@ description: "開発環境のセットアップと必要なツールのインス
 
 ⚠️ **最重要原則**: Day 1の9:00には全員が「AIを体感する」ところからスタートできる状態にする
 
+**実施方式**: 講師が画面共有しながら、メンバーに手元で実行してもらう方式で進める
+
 ## Mac端末検証チェックリスト
 
 ### 1. ハードウェア要件確認
@@ -163,7 +165,7 @@ npm --version
 #### 3.3 初期設定
 
 - [ ] `Settings > AI` で以下を確認:
-  - Model: `claude-3.5-sonnet` が選択されていること
+  - Model: `claude-opus-4-6` (Claude 4.6 Opus) が選択されていること
   - Composer: 有効
 - [ ] 日本語入力のテスト
 
@@ -176,19 +178,29 @@ npm --version
 - [ ] https://github.com でアカウント作成（受講者のメールアドレス）
 - [ ] ユーザー名を講師に共有
 
-#### 4.2 組織への招待
+#### 4.2 研修リポジトリのクローン
 
-講師が実施:
+講師が画面共有しながらメンバーに実行してもらう:
 
-- [ ] 受講者を会社のGitHub Organizationに招待
-- [ ] 招待メールから承認するよう受講者に依頼
+```bash
+# 講師のリポジトリをクローン
+git clone https://github.com/[講師ユーザー名]/practice-ai-onboarding.git
+cd practice-ai-onboarding/web
+npm install
+npm run dev
+```
 
-#### 4.3 GitHub Desktopのインストール
+- [ ] 上記コマンドを順番に実行
+- [ ] ブラウザで http://localhost:3000 にアクセス
+- [ ] 研修アプリが正しく表示されることを確認
 
-- [ ] https://desktop.github.com からダウンロード
-- [ ] インストール
-- [ ] GitHub Desktopを起動してログイン
-- [ ] GitHubアカウントと連携
+#### 4.3 GitHub Desktop（オプション）
+
+※ ターミナルでのgit操作をメインとするため、オプション扱い
+
+- [ ] https://desktop.github.com からダウンロード（任意）
+- [ ] インストール（任意）
+- [ ] GitHub Desktopを起動してログイン（任意）
 
 #### 4.4 Git初期設定
 
@@ -227,27 +239,28 @@ eas --version
 eas login
 ```
 
-#### 5.4 会社のExpo Organizationへの追加
+#### 5.4 動作確認
 
-講師が実施:
+```bash
+eas whoami
+# 出力例: Logged in as [受講者のユーザー名]
+```
 
-- [ ] 受講者を会社のExpo Organizationに招待
+- [ ] ログイン状態を確認
+- [ ] 個人アカウントで完結していることを確認
 
 ## アカウント設定チェックリスト
 
 ### 1. GitHub
 
 - [ ] 全受講者がGitHubアカウントを作成済み
-- [ ] 全受講者を会社のOrganizationに招待済み
-- [ ] 受講者が招待を承認済み
-- [ ] テストリポジトリへのアクセス権限を確認
+- [ ] 全受講者が研修リポジトリをクローン済み
+- [ ] `npm install && npm run dev` が正常に動作することを確認
 
 ### 2. Apple Developer
 
-- [ ] 全受講者のApple IDを収集
-- [ ] 全受講者をApple Developer Accountに追加
-- [ ] TestFlight配布権限を付与
-- [ ] 受講者が招待メールから承認済み
+- [ ] 全受講者が有効なApple IDを持っている
+- [ ] 全受講者がMacにApple IDでサインイン済み
 
 ### 3. Claude Pro
 
@@ -293,10 +306,13 @@ eas login
 
 ### 1. スターターテンプレート
 
+講師のGitHubリポジトリに作成:
+
 - [ ] Expo + Supabase連携済みのテンプレートプロジェクト
 - [ ] `.env.example` ファイル
 - [ ] README with setup instructions
 - [ ] 動作確認済み（iOS Simulator、実機）
+- [ ] リポジトリURL: `https://github.com/[講師ユーザー名]/expo-supabase-starter.git`
 
 #### テンプレートの要件
 
@@ -366,15 +382,19 @@ create table todos (
 
 ### 1. スターターテンプレートの配布
 
-講師がGitHubに作成したテンプレートを各受講者にクローン:
+講師が画面共有しながら、メンバーに手元で実行してもらう:
 
 ```bash
 # 受講者が実行
 cd ~/Documents
-git clone https://github.com/[organization]/expo-supabase-starter.git
+git clone https://github.com/[講師ユーザー名]/expo-supabase-starter.git
 cd expo-supabase-starter
 npm install
 ```
+
+- [ ] 講師が画面共有して実行手順を見せる
+- [ ] メンバーが各自のターミナルで同じコマンドを実行
+- [ ] エラーが出た場合はその場で対処
 
 ### 2. 環境変数の設定
 
@@ -451,8 +471,8 @@ console.log('Supabase接続テスト:', data, error);
 #### アカウント
 
 - [ ] 全受講者が以下にアクセス可能:
-  - [ ] GitHub Organization
-  - [ ] Apple Developer Account
+  - [ ] GitHubアカウント
+  - [ ] Apple ID（サインイン済み）
   - [ ] Claude Pro
   - [ ] Supabase
   - [ ] v0
