@@ -26,7 +26,7 @@ category: "reference"
 | モデル | 特徴 | 使い所 |
 |--------|------|--------|
 | Claude Opus 4.6 (extended thinking) | 段階的推論を可視化 | 複雑な設計判断、バグの根本原因調査 |
-| OpenAI o5.3 | reasoning tokenで深く思考 | 難しいコーディング問題、数学的問題 |
+| OpenAI 5.3 | reasoning tokenで深く思考 | 難しいコーディング問題、数学的問題 |
 
 ### 特化型モデル
 
