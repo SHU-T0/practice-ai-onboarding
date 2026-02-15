@@ -38,12 +38,14 @@ export function DashboardClient({ chapters, guides }: DashboardClientProps) {
   const { getChapterProgress, getOverallProgress } = useProgressStore();
   const overallProgress = mounted ? getOverallProgress(chapters) : 0;
 
-  // Find next incomplete chapter
-  const nextChapter = chapters.find((ch) => {
-    if (ch.checklistCount === 0) return false;
-    const progress = getChapterProgress(ch.slug, ch.checklistCount);
-    return progress < 100;
-  });
+  // Find next incomplete chapter (guarded by mounted to avoid hydration mismatch)
+  const nextChapter = mounted
+    ? chapters.find((ch) => {
+        if (ch.checklistCount === 0) return false;
+        const progress = getChapterProgress(ch.slug, ch.checklistCount);
+        return progress < 100;
+      })
+    : chapters.find((ch) => ch.checklistCount > 0);
 
   return (
     <div>
