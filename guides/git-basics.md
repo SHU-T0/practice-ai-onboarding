@@ -3,7 +3,7 @@ title: "Git基礎ガイド"
 category: "reference"
 ---
 
-# Git最小限ガイド（GitHub Desktop版）
+# Git最小限ガイド（CursorのGit機能版）
 
 ## Gitとは？
 
@@ -15,23 +15,26 @@ category: "reference"
 
 ### 1. Commit（コミット）= セーブポイントを作る
 
-- GitHub Desktopの左下に「Summary」欄がある
-- 変更内容を一言で書く（例：「ボタンの色を変更」）
-- 「Commit to main」ボタンをクリック
+- CursorでSource Controlパネルを開く（`Cmd + Shift + G`）
+- 変更されたファイルが一覧表示される
+- 「+」ボタンでファイルをステージング
+- コミットメッセージ欄の✨アイコンをクリック → AIがメッセージを自動生成
+- 「Commit」ボタンをクリック
 
 ### 2. Push（プッシュ）= クラウドにアップロード
 
-- 画面上部の「Push origin」ボタンをクリック
+- Source Controlパネルの「...」メニューから「Push」を選択
+- またはステータスバーの同期アイコンをクリック
 - これでGitHub上にコードが保存される
 
 ### 3. Pull（プル）= 最新版をダウンロード
 
-- 画面上部の「Fetch origin」→「Pull origin」
+- Source Controlパネルの「...」メニューから「Pull」を選択
 - 他のPC/環境で作業した場合に使う
 
 ### 4. 差分確認
 
-- 変更したファイルが左側に表示される
+- Source Controlパネルで変更したファイルをクリック
 - 緑の行 = 追加された行
 - 赤の行 = 削除された行
 
@@ -41,6 +44,10 @@ category: "reference"
 - .env.localをcommitする（秘密情報が漏洩する）
 - node_modulesをcommitする（自動生成されるファイル）
 
-## GitHub Desktopスクリーンショットガイド
+## CursorのSource Controlパネル操作ガイド
 
-（各操作のUIの説明を文字で記述。スクリーンショットは後で講師が追加）
+1. **パネルを開く**: サイドバーの分岐マークアイコン、または `Cmd + Shift + G`
+2. **ステージング**: ファイル名の横の「+」をクリック
+3. **コミット**: メッセージを入力（✨でAI自動生成可）→「Commit」
+4. **Push/Pull**: 「...」メニューから選択
+5. **リポジトリ初期化**: 「Initialize Repository」→「Publish Branch」でGitHubに公開

@@ -10,12 +10,9 @@ description: "開発環境のセットアップと必要なツールのインス
 ## 概要
 
 **所要時間**: 数日〜1週間
-**担当**: 講師
-**目的**: 初日の学習時間を環境構築で消費しないため、完璧な環境を事前に用意する
+**目的**: 研修初日にスムーズに始められるよう、事前に開発環境を準備します
 
 ⚠️ **最重要原則**: Day 1の9:00には全員が「AIを体感する」ところからスタートできる状態にする
-
-**実施方式**: 講師が画面共有しながら、メンバーに手元で実行してもらう方式で進める
 
 ## Mac端末検証チェックリスト
 
@@ -29,7 +26,7 @@ description: "開発環境のセットアップと必要なツールのインス
 
 - [ ] **RAM**: 16GB以上
   - 確認方法: `このMacについて > メモリ`
-  - 16GB未満の場合は講師に報告
+  - 16GB未満の場合はSlackで報告してください
 
 - [ ] **ストレージ空き容量**: 50GB以上
   - 確認方法: `このMacについて > ストレージ`
@@ -41,16 +38,6 @@ description: "開発環境のセットアップと必要なツールのインス
 
 - [ ] **管理者権限**: 受講者が管理者権限を持っている
   - 確認方法: `システム設定 > ユーザとグループ`
-
-### 2. 端末リスト作成
-
-| 受講者名 | macOSバージョン | RAM | 空き容量 | Apple ID | 管理者権限 | 備考 |
-|---------|----------------|-----|---------|----------|-----------|------|
-| [氏名1] |                |     |         | ✓/✗      | ✓/✗       |      |
-| [氏名2] |                |     |         | ✓/✗      | ✓/✗       |      |
-| [氏名3] |                |     |         | ✓/✗      | ✓/✗       |      |
-| [氏名4] |                |     |         | ✓/✗      | ✓/✗       |      |
-| [氏名5] |                |     |         | ✓/✗      | ✓/✗       |      |
 
 ## インストール手順
 
@@ -173,18 +160,15 @@ npm --version
 
 #### 4.1 GitHubアカウント作成
 
-各受講者に以下を依頼:
-
 - [ ] https://github.com でアカウント作成（受講者のメールアドレス）
-- [ ] ユーザー名を講師に共有
 
 #### 4.2 研修リポジトリのクローン
 
-講師が画面共有しながらメンバーに実行してもらう:
+以下のコマンドをターミナルで実行してください:
 
 ```bash
-# 講師のリポジトリをクローン
-git clone https://github.com/[講師ユーザー名]/practice-ai-onboarding.git
+# 研修リポジトリをクローン
+git clone https://github.com/[研修リポジトリURL]/practice-ai-onboarding.git
 cd practice-ai-onboarding/web
 npm install
 npm run dev
@@ -194,22 +178,14 @@ npm run dev
 - [ ] ブラウザで http://localhost:3000 にアクセス
 - [ ] 研修アプリが正しく表示されることを確認
 
-#### 4.3 GitHub Desktop（オプション）
-
-※ ターミナルでのgit操作をメインとするため、オプション扱い
-
-- [ ] https://desktop.github.com からダウンロード（任意）
-- [ ] インストール（任意）
-- [ ] GitHub Desktopを起動してログイン（任意）
-
-#### 4.4 Git初期設定
+#### 4.3 Git初期設定
 
 ```bash
 git config --global user.name "受講者の名前"
 git config --global user.email "受講者のメール"
 ```
 
-#### 4.5 動作確認
+#### 4.4 動作確認
 
 ```bash
 git config --global --list
@@ -264,16 +240,12 @@ eas whoami
 
 ### 3. Claude Pro
 
-各受講者に以下を依頼:
-
 - [ ] https://claude.ai でアカウント作成
 - [ ] Proプランに登録（会社経費で処理）
   - 月額 $20 / 約3,000円
 - [ ] 動作確認: 長文の質問に回答できること
 
 ### 4. Supabase
-
-各受講者に以下を依頼:
 
 - [ ] https://supabase.com でアカウント作成
 - [ ] 受講者のメールアドレスを使用
@@ -282,8 +254,6 @@ eas whoami
 ⚠️ **注意**: Supabaseプロジェクトの作成はDay 3で実施（今はアカウント作成のみ）
 
 ### 5. v0
-
-各受講者に以下を依頼:
 
 - [ ] https://v0.dev でアカウント作成
 - [ ] Premiumプランに登録（会社経費で処理）
@@ -299,101 +269,22 @@ eas whoami
 
 - [ ] #ai-builders チャンネルを作成
 - [ ] 全受講者を招待
-- [ ] 講師の自己紹介投稿
-- [ ] 受講者に挨拶を促す
-
-## 講師が事前に作成すべき教材リスト
-
-### 1. スターターテンプレート
-
-講師のGitHubリポジトリに作成:
-
-- [ ] Expo + Supabase連携済みのテンプレートプロジェクト
-- [ ] `.env.example` ファイル
-- [ ] README with setup instructions
-- [ ] 動作確認済み（iOS Simulator、実機）
-- [ ] リポジトリURL: `https://github.com/[講師ユーザー名]/expo-supabase-starter.git`
-
-#### テンプレートの要件
-
-```
-expo-supabase-starter/
-├── app/                    # Expo Router
-│   ├── (tabs)/
-│   │   ├── index.tsx      # ホーム画面
-│   │   └── profile.tsx    # プロフィール画面
-│   └── _layout.tsx
-├── components/            # 共通コンポーネント
-├── lib/
-│   └── supabase.ts       # Supabase設定
-├── .env.example          # 環境変数テンプレート
-├── app.json
-├── package.json
-└── README.md
-```
-
-### 2. Supabaseテンプレートプロジェクト
-
-- [ ] テスト用Supabaseプロジェクトを作成
-- [ ] サンプルテーブル（`todos`）を作成
-- [ ] Row Level Security (RLS) の設定
-- [ ] 匿名アクセスの有効化（Day 3用）
-- [ ] 認証設定（Day 4用）
-
-#### テーブルスキーマ
-
-```sql
--- todos テーブル
-create table todos (
-  id uuid default uuid_generate_v4() primary key,
-  title text not null,
-  completed boolean default false,
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null
-);
-```
-
-### 3. ドキュメント
-
-- [ ] 環境構築手順書（画面キャプチャ付き）
-- [ ] トラブルシューティングガイド
-  - Xcodeビルドエラー集
-  - Supabase接続エラー集
-  - EASビルドエラー集
-- [ ] よくある質問（FAQ）
-- [ ] 用語集（state、API、DB等）
-
-### 4. スライド資料
-
-- [ ] Day 1: AI基礎（PPT/Keynote）
-- [ ] Day 2: UI・状態管理（PPT/Keynote）
-- [ ] Day 3: バックエンド入門（PPT/Keynote）
-- [ ] Day 4: 認証・Git（PPT/Keynote）
-- [ ] Day 5: ビルド・配布（PPT/Keynote）
-
-### 5. 課題テンプレート
-
-- [ ] Day 1: ボタン付きアプリの仕様
-- [ ] Day 2: ToDoアプリの仕様
-- [ ] Day 3: CRUD操作アプリの仕様
-- [ ] Day 4: ログイン機能の仕様
-- [ ] 個人プロジェクト要件定義テンプレート
+- [ ] Slackで自己紹介を投稿する
 
 ## 共通設定ファイル配布・動作確認手順
 
 ### 1. スターターテンプレートの配布
 
-講師が画面共有しながら、メンバーに手元で実行してもらう:
+以下のコマンドをターミナルで実行してください:
 
 ```bash
-# 受講者が実行
 cd ~/Documents
-git clone https://github.com/[講師ユーザー名]/expo-supabase-starter.git
+git clone https://github.com/[研修リポジトリURL]/expo-supabase-starter.git
 cd expo-supabase-starter
 npm install
 ```
 
-- [ ] 講師が画面共有して実行手順を見せる
-- [ ] メンバーが各自のターミナルで同じコマンドを実行
+- [ ] 上記コマンドを順番に実行
 - [ ] エラーが出た場合はその場で対処
 
 ### 2. 環境変数の設定
@@ -402,7 +293,7 @@ npm install
 # .env.example を .env にコピー
 cp .env.example .env
 
-# Supabase情報を入力（講師が提供）
+# Supabase情報を入力（Slackで共有された値）
 # SUPABASE_URL=https://xxx.supabase.co
 # SUPABASE_ANON_KEY=eyJxxx...
 ```
@@ -435,7 +326,7 @@ npx expo start
 
 ### 5. Supabase接続テスト
 
-講師が用意したテストコードを実行:
+以下のテストコードを実行:
 
 ```typescript
 // app/(tabs)/index.tsx
@@ -465,7 +356,6 @@ console.log('Supabase接続テスト:', data, error);
   - [ ] Homebrew
   - [ ] nvm + Node.js LTS
   - [ ] Cursor Pro
-  - [ ] GitHub Desktop
   - [ ] EAS CLI
 
 #### アカウント
@@ -495,13 +385,6 @@ console.log('Supabase接続テスト:', data, error);
 - [ ] Wi-Fi接続の確認（全端末）
 - [ ] 電源タップの用意（人数分）
 - [ ] ホワイトボード/付箋の用意
-
-#### 講師準備
-
-- [ ] Day 1のデモ練習完了
-- [ ] 想定Q&Aの準備
-- [ ] エラーパターンの把握
-- [ ] バックアッププランの準備（ネットワーク障害時等）
 
 ## トラブルシューティング
 
@@ -562,50 +445,3 @@ cat .env
 # 3. Supabaseダッシュボードで値を再確認
 ```
 
-## タイムライン
-
-### 開始3週間前
-- [ ] Mac端末の要件確認
-- [ ] 不足スペックの端末は調達・交換
-
-### 開始2週間前
-- [ ] アカウント作成依頼（GitHub、Apple ID等）
-- [ ] スターターテンプレートの作成開始
-
-### 開始1週間前
-- [ ] 全端末でXcodeインストール開始（時間がかかるため早めに）
-- [ ] 教材作成（スライド、ハンドアウト）
-
-### 開始3日前
-- [ ] 全端末で環境構築完了
-- [ ] 動作確認（スターターテンプレート）
-- [ ] トラブルシューティングガイド作成
-
-### 開始前日
-- [ ] 最終動作確認（全端末）
-- [ ] 会場準備
-- [ ] 講師のリハーサル
-
-### Day 1 当日朝（8:00開始想定）
-- [ ] 会場設営
-- [ ] 機材チェック
-- [ ] Wi-Fi接続テスト
-- [ ] 講師の最終確認
-
-## 講師へのメッセージ
-
-この準備フェーズは研修全体の成否を決める最も重要な工程です。
-
-**準備に時間をかけることを恐れないでください。**
-
-- 初日に環境構築で1時間消費すると、受講者のモチベーションが大きく低下します
-- 「AIを体感する」前にトラブルシューティングに追われると、研修の目的がブレます
-- 完璧な環境を用意することで、講師は教育に集中できます
-
-**チェックリストを必ず全て実行してください。**
-
-- 「たぶん大丈夫」は通用しません
-- 全受講者の全端末で動作確認を行ってください
-- バックアッププランも必ず用意してください
-
-研修の成功をお祈りしています！

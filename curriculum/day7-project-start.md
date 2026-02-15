@@ -24,12 +24,12 @@ description: "学んだスキルを活かして個人プロジェクトをスタ
 
 | 時間 | 内容 | 形式 |
 |------|------|------|
-| 9:00-9:05 | ミニティーチャー（Day 6の学び）担当: [受講者名A] | 全体 |
-| 9:05-10:00 | Supabaseテーブル設計（Claude壁打ち→ダッシュボードで作成） | 個人(講師巡回) |
+| 9:00-9:05 | ミニティーチャー（Day 6の学び） | 全体 |
+| 9:05-10:00 | Supabaseテーブル設計（Claude壁打ち→ダッシュボードで作成） | 個人 |
 | 10:00-11:00 | 画面構成の整理（紙とペンでワイヤーフレーム。Figmaは使わない） | 個人 |
 | 11:00-12:00 | スタータープロジェクトをコピー→自分のリポジトリにpush | 個人 |
 | 12:00-13:00 | 昼休み | - |
-| 13:00-16:00 | 実装開始（Cursorで。講師は15分/人のローテーション相談） | 個人(講師巡回) |
+| 13:00-16:00 | 実装開始（Cursorで。メンター相談あり） | 個人 |
 
 ---
 
@@ -128,79 +128,6 @@ description: "学んだスキルを活かして個人プロジェクトをスタ
 Day 3と同じ手順で、Supabaseダッシュボードの **Table Editor** からテーブルを作成します。
 テーブル名やカラム情報はClaude壁打ちの結果を参考にしてください。
 RLSの有効化やポリシー設定は、Day 4で学んだ手順と同じです。
-
-#### 方法2: SQL Editor（上級者・講師向け）
-
-テーブルとRLSを一括で作成できます。
-1. Supabase ダッシュボードの左メニューから **SQL Editor** をクリック
-2. **New query** をクリック
-3. 以下のSQLを**コピーして貼り付けて Run** をクリック:
-
-```sql
--- テーブル1作成
-CREATE TABLE tips (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  user_id UUID REFERENCES auth.users NOT NULL,
-  title TEXT NOT NULL,
-  content TEXT NOT NULL,
-  category TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
-);
-
--- テーブル2作成
-CREATE TABLE favorites (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  user_id UUID REFERENCES auth.users NOT NULL,
-  tip_id UUID REFERENCES tips(id) ON DELETE CASCADE NOT NULL,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
-  UNIQUE(user_id, tip_id)
-);
-
--- RLS有効化
-ALTER TABLE tips ENABLE ROW LEVEL SECURITY;
-ALTER TABLE favorites ENABLE ROW LEVEL SECURITY;
-
--- RLSポリシー作成
-CREATE POLICY "ユーザーは全てのTipsを閲覧できる" ON tips
-  FOR SELECT USING (true);
-
-CREATE POLICY "ユーザーは自分のTipsを作成できる" ON tips
-  FOR INSERT WITH CHECK (auth.uid() = user_id);
-
-CREATE POLICY "ユーザーは自分のTipsを更新できる" ON tips
-  FOR UPDATE USING (auth.uid() = user_id);
-
-CREATE POLICY "ユーザーは自分のTipsを削除できる" ON tips
-  FOR DELETE USING (auth.uid() = user_id);
-
-CREATE POLICY "ユーザーは全てのお気に入りを閲覧できる" ON favorites
-  FOR SELECT USING (true);
-
-CREATE POLICY "ユーザーは自分のお気に入りを作成できる" ON favorites
-  FOR INSERT WITH CHECK (auth.uid() = user_id);
-
-CREATE POLICY "ユーザーは自分のお気に入りを削除できる" ON favorites
-  FOR DELETE USING (auth.uid() = user_id);
-
--- 更新日時の自動更新トリガー
-CREATE OR REPLACE FUNCTION update_updated_at_column()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.updated_at = TIMEZONE('utc'::text, NOW());
-    RETURN NEW;
-END;
-$$ language 'plpgsql';
-
-CREATE TRIGGER update_tips_updated_at BEFORE UPDATE ON tips
-    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
-```
-
-4. **Run** をクリック（「Success」と表示されればOK）
-
-> エラーが出たら、エラーメッセージをCursorのChatに貼り付けて質問してください。
-
----
 
 ### RLS設計のポイント
 
@@ -321,7 +248,7 @@ Day 4で作った `memo-app` をベースに、個人プロジェクトを新し
 > - **推奨**: Day 4の `memo-app` をコピー（認証・DB接続が設定済みで楽）
 > - **代替**: `templates/expo-starter/` をコピー（よりクリーンな状態から始めたい場合）
 >
-> `templates/expo-starter/` は、研修資料リポジトリ内にあります。講師からフォルダの場所を案内してもらってください。
+> `templates/expo-starter/` は、研修資料リポジトリ内にあります。Slackで案内されるフォルダの場所を確認してください。
 
 #### 1. Day 4のプロジェクトをコピー
 
@@ -342,7 +269,7 @@ cd my-app-name
 
 > `my-app-name` の部分を自分のアプリ名（英語、スペースなし）に置き換えてください。例: `sales-log`, `knowledge-share`
 
-> **パスについて**: Day 1から一貫して `~/Documents`（書類）フォルダで作業しています。全員同じ場所にプロジェクトを置くことで、講師のサポートがしやすくなります。
+> **パスについて**: Day 1から一貫して `~/Documents`（書類）フォルダで作業しています。全員同じ場所にプロジェクトを置くことで、トラブルシューティングがしやすくなります。
 
 #### 2. 依存関係のインストール
 
@@ -381,11 +308,13 @@ EXPO_PUBLIC_SUPABASE_ANON_KEY=your-new-anon-key
 3. Private にチェック
 4. **Create repository**
 
-#### 6. GitHub Desktopで接続
+#### 6. CursorのGit機能で接続
 
-1. **File** → **Add Local Repository**
-2. プロジェクトフォルダを選択
-3. **Publish repository** でGitHubにプッシュ
+1. CursorでプロジェクトフォルダをOpen
+2. Source Controlパネル(`Cmd + Shift + G`)を開く
+3. 「Initialize Repository」をクリック
+4. 初回コミット: 全ファイルをステージング → コミットメッセージ「Initial commit」→ Commit
+5. 「Publish Branch」→ GitHubにリポジトリ作成
 
 ---
 
@@ -455,141 +384,7 @@ Composerで画面を作っていきます:
 
 ---
 
-### よくあるコードパターン
-
-> **このセクションは講師用リファレンスです。** 受講者はこのコードを直接書く必要はありません。ComposerでAIに指示を出して生成させてください。AIの出力が期待通りかの確認用です。
-
-#### データ取得（一覧）
-
-```typescript
-import { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase';
-
-export default function TipsListScreen() {
-  const [tips, setTips] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchTips();
-  }, []);
-
-  async function fetchTips() {
-    setLoading(true);
-    const { data, error } = await supabase
-      .from('tips')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      alert('エラー: ' + error.message);
-    } else {
-      setTips(data);
-    }
-    setLoading(false);
-  }
-
-  if (loading) {
-    return <Text>読み込み中...</Text>;
-  }
-
-  return (
-    <FlatList
-      data={tips}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => (
-        <TipItem tip={item} />
-      )}
-    />
-  );
-}
-```
-
-#### データ作成
-
-```typescript
-async function createTip(title: string, content: string, category: string) {
-  const { data: { user } } = await supabase.auth.getUser();
-
-  const { data, error } = await supabase
-    .from('tips')
-    .insert([
-      {
-        user_id: user.id,
-        title,
-        content,
-        category,
-      },
-    ])
-    .select()
-    .single();
-
-  if (error) {
-    alert('エラー: ' + error.message);
-  } else {
-    alert('作成しました！');
-    router.back();
-  }
-}
-```
-
-#### データ更新
-
-```typescript
-async function updateTip(id: string, title: string, content: string) {
-  const { error } = await supabase
-    .from('tips')
-    .update({ title, content })
-    .eq('id', id);
-
-  if (error) {
-    alert('エラー: ' + error.message);
-  } else {
-    alert('更新しました！');
-  }
-}
-```
-
-#### データ削除
-
-```typescript
-async function deleteTip(id: string) {
-  const { error } = await supabase
-    .from('tips')
-    .delete()
-    .eq('id', id);
-
-  if (error) {
-    alert('エラー: ' + error.message);
-  } else {
-    alert('削除しました！');
-    router.back();
-  }
-}
-```
-
----
-
 ## 15分ローテーション相談
-
-### 講師の巡回スケジュール
-
-| 時間 | 受講生 |
-|------|--------|
-| 13:00-13:15 | 受講生A |
-| 13:15-13:30 | 受講生B |
-| 13:30-13:45 | 受講生C |
-| 13:45-14:00 | 受講生D |
-| 14:00-14:15 | 受講生E |
-| 14:15-14:30 | 休憩 |
-| 14:30-14:45 | 受講生A |
-| ... | ... |
-
-### 相談時に聞くこと
-
-1. **進捗確認**: どこまで進んだか
-2. **ブロッカー**: 何に詰まっているか
-3. **技術的質問**: 実装方法がわからない
-4. **コードレビュー**: 書いたコードの確認
 
 ---
 
@@ -689,4 +484,4 @@ async function deleteTip(id: string) {
 4. **Cursor活用**: AIペアプログラミング
 5. **実装の優先順位**: 認証 → 一覧 → 詳細 → 作成
 
-明日から3日間: 個人開発（講師巡回サポート）
+明日から3日間: 個人開発（サポートあり）

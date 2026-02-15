@@ -60,7 +60,7 @@ cd web && npm install && npm run dev
 - メモアプリのCRUD完成
 
 #### Day 5: Git + セキュリティ + TestFlight
-- Gitの基本とGitHub Desktop
+- Gitの基本とCursorのGit機能
 - セキュリティ基礎とRLS設定
 - EASでのビルドとTestFlight配布
 
@@ -98,7 +98,7 @@ cd web && npm install && npm run dev
 | Claude Pro | ~3,000円 | 壁打ち・ドキュメント生成 |
 | v0 Premium | ~3,000円 | Web UI生成 |
 | Xcode | 無料 | iOSビルド環境 |
-| GitHub Desktop | 無料 | Git GUI |
+| CursorのGit機能 | Cursor内蔵 | Git GUI（Source Control） |
 | Supabase Free | 無料 | バックエンド（DB、Auth） |
 | EAS Production | ~$99/月（会社負担） | ビルド・配布基盤 |
 | Make.com Free | 無料 | 業務自動化 |
@@ -146,7 +146,7 @@ practice-ai-onboarding/
 │   ├── ai-tools-comparison.md             # AI使い分けガイド
 │   ├── cursor-cheatsheet.md               # Cursor操作早見表
 │   ├── cursor-ai-settings.md              # CursorのAI設定ガイド（モデル・Rules・Agent・MCP）
-│   ├── git-basics.md                      # Git最小限ガイド（GitHub Desktop）
+│   ├── git-basics.md                      # Git最小限ガイド（CursorのGit機能）
 │   ├── testflight-guide.md                # TestFlight公開手順
 │   ├── supabase-quickstart.md             # Supabase入門ガイド
 │   ├── prompt-cookbook.md                  # プロンプト集（営業向け実例）

@@ -29,7 +29,7 @@ Day 11（月）〜 Day 15（金）
 | 9:15-11:00 | 最終実装・バグ修正 | 個人 |
 | 11:00-12:00 | ビルド実行（EAS Build） | 個人 |
 | 12:00-13:00 | 昼休み（ビルド待ち） | - |
-| 13:00-14:00 | App Store Connect設定 + TestFlight配布 | 個人(講師巡回) |
+| 13:00-14:00 | App Store Connect設定 + TestFlight配布 | 個人 |
 | 14:00-15:00 | 自分のアプリでテスト | 個人 |
 | 15:00-16:00 | 夕会 + 明日の準備 | 全体 |
 
@@ -57,7 +57,7 @@ eas build --platform ios --profile production
 
 3. **外部テスターグループ作成**
    - Group Name: `ベータテスター`
-   - テスター追加: 他の受講生4人 + 講師
+   - テスター追加: 他の受講生4人 + メンター
 
 4. **招待メール送信**
    - ビルドを選択
@@ -569,7 +569,7 @@ npx expo start
 | 1 | 環境構築 | Expo, React Native, useState |
 | 2 | UIとナビゲーション | Expo Router, FlatList |
 | 3 | データベース | Supabase, CRUD |
-| 4 | 認証 + Git | Auth, RLS, GitHub Desktop |
+| 4 | 認証 + Git | Auth, RLS, CursorのGit機能 |
 | 5 | TestFlight | ビルド, 配布 |
 
 ### Week 2: 個人開発
@@ -589,17 +589,6 @@ npx expo start
 | 13 | フィードバック反映 | 改善実施 |
 | 14 | App Store準備 | スクリーンショット, 説明文 |
 | 15 | 最終発表 | 経営層向けプレゼン |
-
----
-
-## 修了証発行
-
-以下を達成した受講生に修了証を発行:
-
-- [ ] 個人アプリを完成させた
-- [ ] TestFlightで配布した
-- [ ] 最終発表会で発表した
-- [ ] 事業企画書を提出した
 
 ---
 

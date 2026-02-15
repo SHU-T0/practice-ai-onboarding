@@ -27,7 +27,7 @@ description: "アプリをTestFlightで実機テスト・配信する"
 |------|------|------|------|
 | 9:00-9:15 | 朝の復習 + ミニティーチャー | 全体 | 15分 |
 | 9:15-9:30 | ミニ座学: Gitとは（提案書のバージョン管理と同じ） | 全体 | 15分 |
-| 9:30-10:15 | GitHub Desktopでcommit→push→GitHub上で確認 | 全体→個人 | 45分 |
+| 9:30-10:15 | CursorのGit機能でcommit→push→GitHub上で確認 | 全体→個人 | 45分 |
 | 10:15-10:30 | 休憩 | - | 15分 |
 | 10:30-11:00 | セキュリティ基礎: APIキー、.env.local、.gitignore | 全体 | 30分 |
 | 11:00-11:30 | Supabase RLS: ログインした人のデータだけ見えるようにする | 全体→実演 | 30分 |
@@ -54,7 +54,7 @@ description: "アプリをTestFlightで実機テスト・配信する"
    - [ ] メモの追加・削除ができる
 
 2. **問題があれば修正**（5分）
-   - エラーがある場合は講師に質問
+   - エラーがある場合はSlackで質問
    - 軽微なバグは午前中に修正
 
 #### 完了チェックポイント
@@ -87,54 +87,41 @@ description: "アプリをTestFlightで実機テスト・配信する"
 | **pull** | 最新版をダウンロード | 共有フォルダから取得 |
 | **差分確認** | 何が変わったか見る | 赤ペン校正のイメージ |
 
-### GitHub Desktop 操作手順
+### CursorのGit機能で操作
 
-#### 1. GitHub Desktopを開く
+#### 1. Source Controlパネルを開く
 
-アプリケーションフォルダからGitHub Desktopを起動し、GitHubアカウントでサインインします。
+Cursorのサイドバーで「Source Control」アイコン（分岐マーク）をクリックするか、`Cmd + Shift + G` で開きます。
 
-#### 2. リポジトリの追加
+#### 2. リポジトリを追加
 
-1. **File** → **Add Local Repository**
-2. 「Choose...」をクリック
-3. 「書類（Documents）」→ `memo-app` フォルダを選択
-4. 「Add Repository」をクリック
-5. 「このフォルダはGitリポジトリではありません」と表示されたら「Create a Repository」をクリック
+まだGitリポジトリでない場合:
+1. Source Controlパネルで「Initialize Repository」をクリック
+2. GitHubにpushするために「Publish Branch」をクリック
 
-#### 3. 初回コミット
+#### 3. 変更をコミット
 
-1. 左側に変更されたファイルが表示される（全ファイルにチェックが入っている状態）
-2. 左下の **Summary** に「初回コミット」と入力
-3. **Commit to main** をクリック
+1. コードを編集して保存する
+2. Source Controlパネルに変更されたファイルが表示される
+3. 変更内容を確認し、「+」ボタンでステージング
+4. コミットメッセージ欄の✨（Sparkle）アイコンをクリックするとAIがメッセージを自動生成
+5. 「Commit」ボタンをクリック
 
-#### 4. GitHubにプッシュ
+#### 4. GitHubにpush
 
-1. 上部の **Publish repository** をクリック
-2. リポジトリ名を確認（`memo-app`）
-3. **Keep this code private** にチェック（外部に公開しない）
-4. **Publish Repository** をクリック
+1. Source Controlパネルの「...」メニューから「Push」を選択
+2. またはステータスバーの同期アイコンをクリック
 
-#### 5. 変更してコミット（練習）
+#### 5. GitHub上で確認
 
-1. Cursorでメモアプリのコードを何か1箇所変更する（色を変える等）
-2. GitHub Desktopに戻ると、変更内容が表示される
-   - 緑 = 追加された行、赤 = 削除された行
-3. Summary に「色を変更」等のメッセージを入力
-4. **Commit to main** をクリック
-5. **Push origin** をクリック
-
-#### 6. GitHub上で確認
-
-1. ブラウザで [github.com](https://github.com) を開く
-2. 右上のアイコン → Your repositories
-3. `memo-app` をクリック
-4. 自分のコードがクラウドに保存されていることを確認
+1. ブラウザで https://github.com にアクセス
+2. 自分のリポジトリを開く
+3. pushしたコードが表示されているか確認
 
 ### 今日は教えないこと
 
 - ブランチ（mainのみ使用。各自別リポジトリ）
 - マージ・リベース・コンフリクト
-- ターミナルでのGit操作（GitHub Desktopのみ）
 
 ---
 
@@ -268,7 +255,7 @@ USING (auth.uid() = user_id);
 - MacがなくてもiOSアプリをビルドできる
 - 自動でApp Store Connectにアップロード
 
-### 前提条件（全てWeek 0で準備済みのはずです。未完了の場合は講師に相談）
+### 前提条件（全てWeek 0で準備済みのはずです。未完了の場合はSlackで相談）
 
 1. **Apple Developer Program**: 会社のアカウントに全員がメンバー追加済み
 2. **Expo アカウント**: [expo.dev](https://expo.dev) で無料作成済み（未作成の場合はここで作成）
@@ -331,7 +318,7 @@ eas build:configure
       "ios": {
         "appleId": "your-email@example.com",
         "ascAppId": "後で入力（App Store Connectでアプリ作成後に取得）",
-        "appleTeamId": "講師から案内されるチームID"
+        "appleTeamId": "Slackで案内されるチームID"
       }
     }
   }
@@ -343,7 +330,7 @@ eas build:configure
 | 項目 | どこで確認するか |
 |------|----------------|
 | `appleId` | Apple Developer Programに登録したメールアドレス |
-| `appleTeamId` | 講師から全員に同じ値を案内します |
+| `appleTeamId` | Slackで全員に同じ値が案内されます |
 | `ascAppId` | この後のApp Store Connect設定（ステップ3）でアプリを作成した後に確認します |
 
 > `ascAppId` は今すぐ埋められません。ステップ3の後に戻って記入します。
@@ -453,7 +440,7 @@ eas build:list
    - **「Yes」を選択**してください
    - 次に「暗号化は免除対象に該当しますか？」と聞かれたら **「Yes」を選択**
    - 理由: アプリがHTTPS通信を使用しているため（Supabaseとの通信）。ただしこれは標準的な暗号化であり、免除対象です。
-   - > 迷ったら講師に確認してください。
+   - > 迷ったらSlackで確認してください。
 4. ステータスが **Ready to Test** になるのを待つ
 
 ### テスターグループ作成
@@ -526,21 +513,7 @@ eas build:list
 
 ### ミニティーチャー（5分）
 
-**今日の担当**: [受講者名D]
-
 **テーマ**: Day 4で学んだ「Supabase Auth」または「Git」を自分の言葉で説明
-
-#### 説明に含めるポイント（どちらかを選択）
-
-**Supabase Authを選んだ場合**:
-- 認証の仕組み（sign up / sign in / sign out）
-- セッション管理
-- RLSとの連携
-
-**Gitを選んだ場合**:
-- Gitとは何か（バージョン管理の目的）
-- commit / push / pull の概念
-- GitHub Desktopの使い方
 
 ---
 
@@ -593,7 +566,7 @@ eas build:list
 
 今日学んだこと:
 
-1. **Git**: コードのバージョン管理（GitHub Desktop）
+1. **Git**: コードのバージョン管理（CursorのGit機能）
 2. **セキュリティ**: APIキーの安全な管理
 3. **RLS**: データのアクセス制御
 4. **EAS Build**: iOSアプリのビルド
